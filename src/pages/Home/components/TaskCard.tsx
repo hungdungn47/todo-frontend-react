@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { Task } from "../HomePage";
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
+import { TaskStatus } from "../HomePage";
 
 interface TaskCardProps {
   task: Task
@@ -23,7 +24,7 @@ export default function TaskCard({ task, onClick }: TaskCardProps) {
     opacity: isDragging ? 0.5 : undefined
   }
 
-  const statusColor = task.status == 'Not started' ? '#e0bc09' : (task.status == 'In progress' ? '#1c81e6' : '#32a852')
+  const statusColor = task.status == TaskStatus.NotStarted ? '#e0bc09' : (task.status == TaskStatus.InProgress ? '#1c81e6' : '#32a852')
 
   return <div
     style={style}
@@ -49,13 +50,6 @@ export default function TaskCard({ task, onClick }: TaskCardProps) {
       key={task.title}
     >
       {task.title}
-      {/* <Box sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}>
-        <Edit onClick={onClick} sx={{ color: "#1c81e6" }} />
-      </Box> */}
       <Typography sx={{
         color: statusColor,
         fontSize: 14

@@ -51,7 +51,6 @@ export default function CreateTaskModal({ isUpdate = false, taskData, createTask
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'start', marginBottom: 3, justifyContent: 'space-between' }}>
         <Typography>Status</Typography>
-        {/* <TextField name="status" value={taskData.status} onChange={handleChangeTaskData} sx={{ width: "70%", }} size='small'></TextField> */}
         <Select
           name="status"
           value={taskData.status}

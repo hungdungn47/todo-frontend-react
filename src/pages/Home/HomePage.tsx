@@ -7,7 +7,11 @@ import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-ki
 import { createTaskAPI, deleteTaskAPI, getAllTasks, getUserInfoAPI, updateTaskAPI } from "../../api";
 import { useNavigate } from "react-router-dom";
 
-type TaskStatus = "Not started" | "In progress" | "Done"
+export enum TaskStatus {
+  NotStarted = 'Not started',
+  InProgress = 'In progress',
+  Done = 'Done'
+}
 
 export interface Task {
   _id: string,
@@ -19,7 +23,7 @@ export interface Task {
 }
 
 export default function HomePage() {
-  const [selectedTaskData, setSelectedTaskData] = useState<Task>({ _id: "", title: "", status: "Not started" })
+  const [selectedTaskData, setSelectedTaskData] = useState<Task>({ _id: "", title: "", status: TaskStatus.NotStarted })
   const [userInfo, setUserInfo] = useState({ username: "", email: "" })
   const [isLoading, setIsLoading] = useState(true)
   const [isUpdating, setIsUpdating] = useState(false);
@@ -90,7 +94,7 @@ export default function HomePage() {
       settasksList(tasksList)
     }
     closeModal()
-    setSelectedTaskData({ _id: "", title: "", status: "Not started" })
+    setSelectedTaskData({ _id: "", title: "", status: TaskStatus.NotStarted })
   }
 
   const handleDeleteTask = () => {
@@ -99,7 +103,7 @@ export default function HomePage() {
     tasksList.splice(selectedTaskIndex, 1)
     settasksList(tasksList)
     closeModal()
-    setSelectedTaskData({ _id: "", title: "", status: "Not started" })
+    setSelectedTaskData({ _id: "", title: "", status: TaskStatus.NotStarted })
   }
 
   const handleChangeTaskData = (event: React.ChangeEvent<Element> | SelectChangeEvent) => {
